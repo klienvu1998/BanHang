@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChiTietSanPham">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="Chi tiết sản phẩm"
+        android:id="@+id/id_ctsp_toolbar"></android.support.v7.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="130dp"
+            android:id="@+id/id_ctsp_img" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/id_ctsp_img"
+            android:text="Samsung"
+            android:textSize="23sp"
+            android:id="@+id/id_ctsp_tv_tensp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/id_ctsp_img"
+            android:layout_below="@id/id_ctsp_tv_tensp"
+            android:text="100000"
+            android:textSize="15sp"
+            android:id="@+id/id_ctsp_tv_giasp"
+            android:textColor="#f12"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/id_ctsp_img"
+            android:id="@+id/temp"
+            android:layout_below="@id/id_ctsp_tv_giasp"
+            android:gravity="center">
+            <Spinner
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_ctsp_spinner"></Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_toRightOf="@id/id_ctsp_img"
+            android:layout_below="@id/temp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_ctsp_button_add"
+                android:text="Thêm vào giỏ hàng"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15sp"
+        android:layout_below="@id/id_ctsp_img"
+        android:id="@+id/id_ctsp_tv_mota"/>
+
+</LinearLayout>

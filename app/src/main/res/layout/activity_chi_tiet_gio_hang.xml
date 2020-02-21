@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChiTietGioHang">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="Giỏ hàng"
+        android:id="@+id/id_chitietdonhang_toolbar"></android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="9">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:id="@+id/id_chitietdonhang_listview"></ListView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Thành tiền:"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="20sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="#f12"
+                android:layout_weight="4"
+                android:text="1000"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:id="@+id/id_chitietdonhang_tv_tongtien" />
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/id_chitietdonhang_button_thanhtoan"
+            android:text="Thanh toán"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/id_chitietdonhang_button_tieptucmuahang"
+            android:text="Tiếp tục mua hàng"/>
+    </LinearLayout>
+</LinearLayout>

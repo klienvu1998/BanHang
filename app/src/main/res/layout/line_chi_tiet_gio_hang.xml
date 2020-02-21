@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/id_line_chitiet_giohang_img"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_line_chitiet_giohang_tv_name"
+            android:text="Samsung"
+            android:textStyle="bold"
+            android:textSize="23sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:id="@+id/id_line_chitiet_giohang_tv_dongia"
+            android:gravity="center"
+            android:text="100000"
+            android:textSize="20sp"
+            android:textColor="#f12" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="-"
+                android:id="@+id/id_line_chitiet_giohang_button_down"/>
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/id_line_chitiet_giohang_tv_soluong"
+                android:text="1"
+                android:gravity="center"
+                android:textSize="25sp"/>
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="+"
+                android:id="@+id/id_line_chitiet_giohang_button_up"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
