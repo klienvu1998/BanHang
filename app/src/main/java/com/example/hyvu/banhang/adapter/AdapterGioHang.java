@@ -9,7 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.hyvu.banhang.ChiTietGioHang;
+import com.example.hyvu.banhang.MainActivity;
 import com.example.hyvu.banhang.R;
 import com.example.hyvu.banhang.model.GioHang;
 import com.squareup.picasso.Picasso;
@@ -47,7 +50,7 @@ public class AdapterGioHang extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         final ViewHolder holder;
         if(view==null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -63,24 +66,50 @@ public class AdapterGioHang extends BaseAdapter {
         }else {
             holder= (ViewHolder) view.getTag();
         }
-        final GioHang gioHang=arr_gioHang.get(i);
+        GioHang gioHang=arr_gioHang.get(i);
         holder.tv_name.setText(gioHang.getTensp());
         holder.tv_soluong.setText(gioHang.getSoluongsp()+"");
         holder.tv_dongia.setText(gioHang.getGiasp()+"");
         Picasso.get().load(gioHang.getHinhsp()).into(holder.img);
-        soluongmoi=gioHang.getSoluongsp();
+        if(soluongmoi==9){
+            holder.btn_up.setVisibility(View.INVISIBLE);
+        }
         holder.btn_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                soluongmoi=arr_gioHang.get(i).getSoluongsp();
                 soluongmoi-=1;
-                holder.tv_soluong.setText(soluongmoi+"");
+                if(soluongmoi==0){
+                    MainActivity.arr_gioHang.remove(i);
+                    ChiTietGioHang.adapterGioHang.notifyDataSetChanged();
+                }
+                else{
+                    holder.btn_up.setVisibility(View.VISIBLE);
+                    holder.tv_soluong.setText(soluongmoi+"");
+                    MainActivity.arr_gioHang.get(i).setGiasp((soluongmoi*MainActivity.arr_gioHang.get(i).getGiasp())/MainActivity.arr_gioHang.get(i).getSoluongsp());
+                    MainActivity.arr_gioHang.get(i).setSoluongsp(soluongmoi);
+                    holder.tv_dongia.setText(MainActivity.arr_gioHang.get(i).getGiasp()+"");
+                }
+                ChiTietGioHang.getData();
             }
         });
         holder.btn_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                soluongmoi=arr_gioHang.get(i).getSoluongsp();
                 soluongmoi+=1;
-                holder.tv_soluong.setText(soluongmoi+"");
+                if(soluongmoi>9){
+                    Toast.makeText(context, "Maximum", Toast.LENGTH_SHORT).show();
+                    holder.btn_up.setVisibility(View.INVISIBLE);
+                    soluongmoi-=1;
+                }
+                else{
+                    holder.tv_soluong.setText(soluongmoi+"");
+                    MainActivity.arr_gioHang.get(i).setGiasp((soluongmoi*MainActivity.arr_gioHang.get(i).getGiasp())/MainActivity.arr_gioHang.get(i).getSoluongsp());
+                    MainActivity.arr_gioHang.get(i).setSoluongsp(soluongmoi);
+                    holder.tv_dongia.setText(MainActivity.arr_gioHang.get(i).getGiasp()+"");
+                }
+                ChiTietGioHang.getData();
             }
         });
 

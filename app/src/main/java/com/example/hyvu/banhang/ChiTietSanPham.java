@@ -33,11 +33,23 @@ public class ChiTietSanPham extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chi_tiet_san_pham);
         Mapping();
+        CreateToolBar();
         product= (Product) getIntent().getSerializableExtra("sanphamdachon");
-        tv_tensp.setText(product.getName());
-        tv_mota.setText(product.getDesciption());
-        tv_giasp.setText(product.getPrice()+"");
-        Picasso.get().load(product.getImg()).into(img);
+        if(product.getName()!=null) {
+            tv_tensp.setText(product.getName());
+            tv_mota.setText(product.getDesciption());
+            tv_giasp.setText(product.getPrice() + "");
+            Picasso.get().load(product.getImg()).into(img);
+        }
+    }
+
+    private void CreateToolBar() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -52,10 +64,18 @@ public class ChiTietSanPham extends AppCompatActivity {
                     for(int i=0;i<MainActivity.arr_gioHang.size();i++){
                         if(MainActivity.arr_gioHang.get(i).getIdsp()==product.getId()){
                             isExist=true;
-                            int soluongnew=soluong+MainActivity.arr_gioHang.get(i).getSoluongsp();
-                            int total_price=soluongnew*product.getPrice();
-                            MainActivity.arr_gioHang.get(i).setGiasp(total_price);
-                            MainActivity.arr_gioHang.get(i).setSoluongsp(soluongnew);
+                            if((MainActivity.arr_gioHang.get(i).getSoluongsp() + soluong) < 10) {
+                                int soluongnew = soluong + MainActivity.arr_gioHang.get(i).getSoluongsp();
+                                int total_price = soluongnew * product.getPrice();
+                                MainActivity.arr_gioHang.get(i).setGiasp(total_price);
+                                MainActivity.arr_gioHang.get(i).setSoluongsp(soluongnew);
+                            }
+                            else{
+                                int soluongnew = 9;
+                                int total_price = soluongnew * product.getPrice();
+                                MainActivity.arr_gioHang.get(i).setGiasp(total_price);
+                                MainActivity.arr_gioHang.get(i).setSoluongsp(soluongnew);
+                            }
                         }
                     }
                     if(isExist==false){

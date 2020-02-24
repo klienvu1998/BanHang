@@ -189,10 +189,16 @@ public class MainActivity extends AppCompatActivity {
         arr_Product=new ArrayList<>();
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         recyclerView.setHasFixedSize(true);
-        adapterNewProduct=new AdapterNewProduct(getApplicationContext(),R.layout.line_spmoi,arr_Product);
+        adapterNewProduct=new AdapterNewProduct(MainActivity.this,R.layout.line_spmoi,arr_Product);
         recyclerView.setAdapter(adapterNewProduct);
         if(arr_gioHang==null){
             arr_gioHang=new ArrayList<>();
         }
+    }
+
+    public void getSPmoi(int i){
+        Intent intent=new Intent(MainActivity.this,ChiTietSanPham.class);
+        intent.putExtra("sanphamdachon",arr_Product.get(i));
+        startActivity(intent);
     }
 }

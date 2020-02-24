@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.hyvu.banhang.MainActivity;
 import com.example.hyvu.banhang.R;
 import com.example.hyvu.banhang.model.Product;
 import com.squareup.picasso.Picasso;
@@ -36,10 +38,16 @@ public class AdapterNewProduct extends RecyclerView.Adapter<AdapterNewProduct.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterNewProduct.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull AdapterNewProduct.ViewHolder viewHolder,final int i) {
         viewHolder.tv_tensp.setText(arr_products.get(i).getName());
         viewHolder.tv_giasp.setText(arr_products.get(i).getPrice()+"");
         Picasso.get().load(arr_products.get(i).getImg()).into(viewHolder.img_sp);
+        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) context).getSPmoi(i);
+            }
+        });
     }
 
     @Override
@@ -50,11 +58,13 @@ public class AdapterNewProduct extends RecyclerView.Adapter<AdapterNewProduct.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_tensp,tv_giasp;
         ImageView img_sp;
+        LinearLayout linearLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_tensp=itemView.findViewById(R.id.id_line_spmoi_tv_tensp);
             tv_giasp=itemView.findViewById(R.id.id_line_spmoi_tv_giasp);
             img_sp=itemView.findViewById(R.id.id_line_spmoi_img_sp);
+            linearLayout=itemView.findViewById(R.id.id_line_spmoi_linearLayout);
         }
     }
 }

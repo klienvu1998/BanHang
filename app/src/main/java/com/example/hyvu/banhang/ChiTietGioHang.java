@@ -1,8 +1,10 @@
 package com.example.hyvu.banhang;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,11 +20,11 @@ public class ChiTietGioHang extends AppCompatActivity {
 
     Toolbar toolbar;
     ListView listView;
-    TextView tv_thanhtien;
+    static TextView tv_thanhtien;
     Button btn_thanhtoan;
     Button btn_tieptucmuahang;
-    AdapterGioHang adapterGioHang;
-    int tongtien=0;
+    public static AdapterGioHang adapterGioHang;
+    static int tongtien=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,20 @@ public class ChiTietGioHang extends AppCompatActivity {
         getData();
     }
 
-    private void getData() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        btn_tieptucmuahang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ChiTietGioHang.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public static void getData() {
+        tongtien=0;
         for (int i=0;i<MainActivity.arr_gioHang.size();i++){
             tongtien+=MainActivity.arr_gioHang.get(i).getGiasp();
         }
@@ -51,5 +66,11 @@ public class ChiTietGioHang extends AppCompatActivity {
         btn_tieptucmuahang=findViewById(R.id.id_chitietdonhang_button_tieptucmuahang);
         adapterGioHang=new AdapterGioHang(getApplicationContext(),R.layout.line_chi_tiet_gio_hang,MainActivity.arr_gioHang);
         listView.setAdapter(adapterGioHang);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }
