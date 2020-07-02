@@ -44,6 +44,13 @@ public class ChiTietGioHang extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btn_thanhtoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ChiTietGioHang.this,ThongTinKhachHang.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public static void getData() {
